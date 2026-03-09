@@ -1,0 +1,34 @@
+# Core
+PySide6>=6.6.0
+numpy>=1.26.0
+scipy>=1.11.0
+
+# Audio I/O & DSP
+soundfile>=0.12.1
+sounddevice>=0.4.6
+librosa>=0.10.1
+
+# AI / Embeddings
+torch>=2.1.0
+transformers>=4.36.0
+
+# Vector Database
+chromadb>=0.4.22
+
+# Dimensionality Reduction & Visualization
+umap-learn>=0.5.5
+pyqtgraph>=0.13.3
+matplotlib>=3.8.0
+
+# Data
+sqlalchemy>=2.0.0
+
+# Optional: Essentia (macOS: pip install essentia-tensorflow or build from source)
+# essentia>=2.1b6.dev1110
+
+# Optional: MLX for Apple Silicon acceleration
+# mlx>=0.5.0
+
+# Utilities
+mutagen>=1.47.0
+tqdm>=4.66.0

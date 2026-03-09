@@ -1,0 +1,54 @@
+"""Global configuration for the Audio Sample Manager."""
+import os
+import platform
+from pathlib import Path
+
+# --- Paths ---
+APP_NAME = "SampleForge"
+APP_DIR = Path(__file__).parent
+DATA_DIR = APP_DIR / "data"
+DB_PATH = DATA_DIR / "catalog.db"
+CHROMA_DIR = DATA_DIR / "chroma"
+CACHE_DIR = DATA_DIR / "cache"
+
+for d in (DATA_DIR, CHROMA_DIR, CACHE_DIR):
+    d.mkdir(parents=True, exist_ok=True)
+
+# --- CLAP Model ---
+CLAP_MODEL_ID = "laion/clap-htsat-unfused"
+EMBEDDING_DIM = 512
+
+# --- Audio ---
+SUPPORTED_EXTENSIONS = {".wav", ".flac", ".aiff", ".aif", ".mp3", ".ogg", ".m4a", ".opus"}
+ANALYSIS_SAMPLE_RATE = 48000  # CLAP requires 48kHz
+MAX_WAVEFORM_SAMPLES = 4096   # resolution for waveform display
+PLAYER_BLOCK_SIZE = 2048
+
+# --- Scan ---
+WORKER_THREADS = max(2, os.cpu_count() - 2)
+BATCH_SIZE = 32               # files per analysis batch
+
+# --- Search ---
+TOP_K_SIMILAR = 50
+TOP_K_TEXT = 30
+
+# --- UMAP ---
+UMAP_N_NEIGHBORS = 15
+UMAP_MIN_DIST = 0.1
+UMAP_METRIC = "cosine"
+
+# --- Platform ---
+IS_MACOS = platform.system() == "Darwin"
+IS_APPLE_SILICON = IS_MACOS and platform.machine() == "arm64"
+
+# Attempt MLX acceleration on Apple Silicon
+USE_MLX = IS_APPLE_SILICON and os.environ.get("DISABLE_MLX", "0") == "0"
+
+# --- UI ---
+ACCENT_COLOR = "#7c3aed"
+ACCENT_HOVER = "#6d28d9"
+BG_COLOR = "#141414"
+PANEL_COLOR = "#1e1e1e"
+BORDER_COLOR = "#2a2a2a"
+TEXT_PRIMARY = "#e8e8e8"
+TEXT_SECONDARY = "#888888"
